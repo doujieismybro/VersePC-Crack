@@ -1,0 +1,125 @@
+{
+    "name": "versepc",
+    "version": "1.3.41",
+    "description": "VersePC - Minecraft Launcher",
+    "author": {
+        "name": "豆杰",
+        "email": "versepc@example.com"
+    },
+    "license": "VPSVL-2.0",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "dev": "cross-env NODE_ENV=dev electron .",
+        "obfuscate": "node ./obfuscate-activation.js",
+        "build": "npm run obfuscate && node ./generate-integrity.js && electron-builder --win --linux --mac --publish never",
+        "build:win": "npm run obfuscate && node ./generate-integrity.js && electron-builder --win --publish never",
+        "build:win:test": "cross-env ENABLE_AI=true node ./obfuscate-activation.js && cross-env ENABLE_AI=true node ./generate-integrity.js && cross-env ENABLE_AI=true electron-builder --win --publish never",
+        "build:win:release": "cross-env ENABLE_AI=false node ./obfuscate-activation.js && cross-env ENABLE_AI=false node ./generate-integrity.js && cross-env ENABLE_AI=false electron-builder --win --publish never",
+        "build:linux": "npm run obfuscate && electron-builder --linux --publish never",
+        "build:linux:test": "cross-env ENABLE_AI=true npm run obfuscate && electron-builder --linux --publish never",
+        "build:linux:release": "cross-env ENABLE_AI=false npm run obfuscate && electron-builder --linux --publish never",
+        "build:mac": "npm run obfuscate && node ./generate-integrity.js && electron-builder --mac --publish never",
+        "build:mac:test": "cross-env ENABLE_AI=true npm run obfuscate && node ./generate-integrity.js && electron-builder --mac --publish never",
+        "build:mac:release": "cross-env ENABLE_AI=false npm run obfuscate && node ./generate-integrity.js && electron-builder --mac --publish never",
+        "build:dir": "npm run obfuscate && electron-builder --win --dir",
+        "build:installer": "npm run obfuscate && electron-builder --win --config.nsis --publish never",
+        "build:publish": "npm run obfuscate && electron-builder --win --linux --mac --publish always",
+        "build:clean": "node -e \"const{execSync}=require('child_process');execSync('npm run build:win',{stdio:'inherit'})\""
+    },
+    "dependencies": {
+        "@xterm/addon-fit": "^0.11.0",
+        "@xterm/xterm": "^6.0.0",
+        "adm-zip": "^0.5.17",
+        "app-builder-bin": "^5.0.0-alpha.12",
+        "electron-updater": "^6.8.3",
+        "monaco-editor": "^0.55.1",
+        "recycle-bin": "^0.1.3",
+        "sharp": "^0.34.5",
+        "ws": "^8.20.0"
+    },
+    "build": {
+        "electronVersion": "41.4.0",
+        "appId": "com.versepc.launcher",
+        "productName": "VersePC",
+        "icon": "img/icon.ico",
+        "directories": {
+            "output": "../dist"
+        },
+        "files": [
+            "**/*"
+        ],
+        "publish": {
+            "provider": "github",
+            "owner": "doujie081231",
+            "repo": "versePc"
+        },
+        "win": {
+            "target": "nsis"
+        },
+        "mac": {
+            "target": "dmg",
+            "icon": "img/icon.jpg",
+            "category": "public.app-category.games",
+            "artifactName": "VersePC-${version}-${arch}.${ext}"
+        },
+        "dmg": {
+            "artifactName": "VersePC-${version}-${arch}.dmg",
+            "contents": [
+                {
+                    "x": 130,
+                    "y": 220
+                },
+                {
+                    "x": 410,
+                    "y": 220,
+                    "type": "link",
+                    "path": "/Applications"
+                }
+            ]
+        },
+        "linux": {
+            "target": "AppImage",
+            "icon": "img/icon.jpg",
+            "category": "Game",
+            "artifactName": "VersePC-${version}-${arch}.${ext}",
+            "desktop": {
+                "entry": "Name=VersePC\nComment=VersePC - Minecraft启动器\nCategories=Game;"
+            }
+        },
+        "portable": {
+            "artifactName": "VersePC-${version}.exe",
+            "requestExecutionLevel": "user"
+        },
+        "nsis": {
+            "oneClick": false,
+            "allowToChangeInstallationDirectory": true,
+            "createDesktopShortcut": "always",
+            "createStartMenuShortcut": true,
+            "shortcutName": "VersePC",
+            "installerIcon": "img/icon.ico",
+            "uninstallerIcon": "img/icon.ico",
+            "artifactName": "VersePC-Setup-${version}.exe"
+        },
+        "asar": true,
+        "asarUnpack": [
+            "node_modules/sharp/**/*",
+            "node_modules/@img/**/*",
+            "node_modules/detect-libc/**/*",
+            "img/*.ico",
+            "img/*.jpg",
+            "resources/**/*"
+        ],
+        "releaseInfo": {
+            "releaseNotes": "查看 GitHub Releases 获取更新日志：https://github.com/doujie081231/versePc/releases"
+        }
+    },
+    "devDependencies": {
+        "@ffmpeg-installer/ffmpeg": "^1.1.0",
+        "cross-env": "^7.0.3",
+        "electron": "41.4.0",
+        "electron-builder": "^26.8.1",
+        "javascript-obfuscator": "^5.4.3",
+        "png-to-ico": "^3.0.1"
+    }
+}

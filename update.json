@@ -1,0 +1,13 @@
+{
+  "version": "1.3.4",
+  "releaseDate": "2026-06-21T00:00:00Z",
+  "releaseName": "VersePC v1.3.4 测试版",
+  "releaseNotes": "VersePC v1.3.4 测试版更新",
+  "files": {
+    "win-x64": {
+      "url": "https://pan.quark.cn/s/0fb77d9c5233",
+      "size": 219156115,
+      "sha256": "da3ea2303bcd8150d8b2379e028c92e6feb9d0140d6d0594f8f62c78636fd9b8"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+[Version]
+signature="$CHICAGO$"
+
+[DefaultInstall]
+CopyFiles = Scheme.Cur, Scheme.Txt
+AddReg    = Scheme.Reg
+
+[DestinationDirs]
+Scheme.Cur = 10,"%CUR_DIR%"
+Scheme.Txt = 10,"%CUR_DIR%"
+
+[Scheme.Reg]
+HKCU,"Control Panel\Cursors\Schemes","%SCHEME_NAME%",,"%10%\%CUR_DIR%\%pointer%,%10%\%CUR_DIR%\%help%,%10%\%CUR_DIR%\%work%,%10%\%CUR_DIR%\%busy%,%10%\%CUR_DIR%\%cross%,%10%\%CUR_DIR%\%Text%,%10%\%CUR_DIR%\%Hand%,%10%\%CUR_DIR%\%unavailable%,%10%\%CUR_DIR%\%Vert%,%10%\%CUR_DIR%\%Horz%,%10%\%CUR_DIR%\%Dgn1%,%10%\%CUR_DIR%\%Dgn2%,%10%\%CUR_DIR%\%move%,%10%\%CUR_DIR%\%alternate%,%10%\%CUR_DIR%\%link%,%10%\%CUR_DIR%\%loc%,%10%\%CUR_DIR%\%person%"
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Runonce\Setup\","",,"rundll32.exe shell32.dll,Control_RunDLL main.cpl,,1"
+; ↑上面是复制网上的，虽然不知道有什么用；但是没有就运行不了 :（
+
+[Scheme.Cur]
+"正常选择.cur"
+"帮助选择.cur"
+"后台运行.ani"
+"忙.ani"
+"精确选择.cur"
+"文本选择.cur"
+"手写.cur"
+"不可用.ani"
+"垂直调整大小.cur"
+"水平调整大小.cur"
+"沿对角线调整大小 1.cur"
+"沿对角线调整大小 2.cur"
+"移动.cur"
+"候选.ani"
+"链接选择.ani"
+"位置选择.cur"
+"个人选择.ani"
+
+[Strings]
+CUR_DIR           = "Cursors\我的世界"
+SCHEME_NAME       = 我的世界
+pointer           =  "正常选择.cur"
+help              = "帮助选择.cur"
+work              = "后台运行.ani"
+busy              = "忙.ani"
+cross             = "精确选择.cur"
+text              = "文本选择.cur"
+hand              = "手写.cur"
+unavailable	      = "不可用.ani"
+vert              = "垂直调整大小.cur"
+horz              = "水平调整大小.cur"
+dgn1              = "沿对角线调整大小 1.cur"
+dgn2              = "沿对角线调整大小 2.cur"
+move              = "移动.cur"
+alternate         = "候选.ani"
+link              = "链接选择.ani"
+loc               = "位置选择.cur"
+person            = "个人选择.ani"
+
+; Youming 工作室 - MC 鼠标指针 - 开源项目
